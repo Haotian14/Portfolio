@@ -42,14 +42,6 @@ const projects: Project[] = [
     href: "https://github.com/Haotian14/Algorithm-Review-Handbook",
     liveHref: "https://haotian14.github.io/Algorithm-Review-Handbook/#/",
   },
-  {
-    number: "04",
-    title: "IBKR Review Workspace",
-    description:
-      "A security-conscious, read-only investment review workspace built around the official IBKR MCP. It turns a written investment discipline into a repeatable daily portfolio review workflow.",
-    tags: ["Codex", "MCP", "Automation", "Security"],
-    href: "https://github.com/Haotian14/stockportfolio",
-  },
 ];
 
 const skills = [
