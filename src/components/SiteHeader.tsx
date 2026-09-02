@@ -34,15 +34,16 @@ export function SiteHeader() {
       <div className="scroll-progress" aria-hidden="true" />
 
       {/*
-        The wordmark folds to its initials on scroll: the inner letters
-        collapse to zero width, leaving "HL." behind. aria-label keeps the
-        accessible name stable no matter which state is showing.
+        The wordmark folds to its initials on scroll: "art " and "uo"
+        collapse to zero width, leaving "HL." behind. The space after
+        "Hart" sits inside the folding run so it closes up too.
+        aria-label keeps the accessible name stable in both states.
       */}
       <a className="monogram" href="#top" aria-label="Hart Luo — back to top">
         <span className="monogram-mark" aria-hidden="true">
           <span className="mono-keep">H</span>
           <span className="mono-fold">
-            <span>art</span>
+            <span>art&nbsp;</span>
           </span>
           <span className="mono-keep">L</span>
           <span className="mono-fold">
