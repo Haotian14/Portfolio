@@ -1,0 +1,111 @@
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 0.4fr 2fr;
+  min-height: 264px;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--dur-mid) var(--ease-out-quint);
+}
+
+.timeline li:hover {
+  background: color-mix(in srgb, var(--accent-bright) 5%, transparent);
+}
+
+.timeline-marker {
+  padding: 44px 24px 44px 0;
+  color: var(--muted);
+  font: 11px var(--font-mono);
+  letter-spacing: 0.08em;
+  transition: color var(--dur-mid) var(--ease-out-quint);
+}
+
+.timeline li:hover .timeline-marker {
+  color: var(--accent);
+}
+
+.timeline-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 1.4fr;
+  gap: 36px;
+  padding: 44px 0;
+  align-items: start;
+}
+
+/* The connector rule draws downward as each entry reveals. */
+.timeline-rule {
+  position: absolute;
+  left: -30px;
+  top: 50px;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+  transform: scaleY(0);
+  transform-origin: 50% 0;
+  transition: transform 1100ms var(--ease-out-expo) 220ms;
+}
+
+.timeline li[data-revealed="true"] .timeline-rule {
+  transform: scaleY(1);
+}
+
+.timeline-content::before {
+  content: "";
+  position: absolute;
+  left: -33px;
+  top: 47px;
+  width: 7px;
+  height: 7px;
+  background: var(--accent-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-bright) 16%, transparent);
+  transition: box-shadow var(--dur-mid) var(--ease-out-expo);
+}
+
+.timeline li:hover .timeline-content::before {
+  box-shadow: 0 0 0 9px color-mix(in srgb, var(--accent-bright) 20%, transparent);
+}
+
+.timeline-label {
+  position: absolute;
+  top: 44px;
+  left: -122px;
+  margin: 0;
+  font: 10px var(--font-mono);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.timeline h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.6vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.timeline-place {
+  margin: 9px 0 0;
+  font: 11px/1.6 var(--font-mono);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.timeline-body {
+  margin: 0;
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.78;
+}

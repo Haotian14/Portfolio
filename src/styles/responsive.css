@@ -1,0 +1,203 @@
+@media (max-width: 1080px) {
+  .site-nav {
+    gap: 2px;
+  }
+
+  .site-nav a {
+    padding: 8px 10px;
+  }
+
+  .theme-toggle-label {
+    display: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 54px;
+  }
+
+  .profile-card {
+    justify-self: start;
+    align-self: auto;
+    max-width: 280px;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .timeline-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .timeline-body {
+    grid-column: 1 / -1;
+  }
+
+  .work-section {
+    grid-template-columns: 1fr;
+  }
+
+  .work-intro {
+    position: static;
+  }
+
+  .project-card {
+    grid-template-columns: 50px 1fr;
+  }
+
+  .project-image,
+  .project-glyph {
+    grid-column: 2;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --header-h: 62px;
+  }
+
+  .site-header {
+    grid-template-columns: 1fr auto;
+    padding: 0 18px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .hero {
+    padding: calc(var(--header-h) + 54px) 20px 128px;
+    gap: 48px;
+  }
+
+  .hero-grid {
+    background-size: 54px 54px;
+  }
+
+  .hero-title {
+    font-size: clamp(42px, 12.5vw, 66px);
+  }
+
+  .hero-intro {
+    margin-top: 26px;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .primary-button {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .text-link {
+    align-self: flex-start;
+  }
+
+  .profile-card {
+    max-width: 300px;
+  }
+
+  .hero-marquee {
+    bottom: 40px;
+  }
+
+  .section {
+    padding: 82px 20px;
+  }
+
+  .timeline li {
+    grid-template-columns: 34px 1fr;
+    min-height: 0;
+  }
+
+  .timeline-marker {
+    padding: 32px 0;
+  }
+
+  .timeline-content {
+    display: block;
+    padding: 32px 0 38px 18px;
+  }
+
+  .timeline-rule {
+    left: -6px;
+    top: 42px;
+  }
+
+  .timeline-content::before {
+    left: -9px;
+    top: 38px;
+  }
+
+  .timeline-label {
+    position: static;
+    transform: none;
+    margin-bottom: 10px;
+  }
+
+  .timeline-place {
+    margin-top: 8px;
+  }
+
+  .timeline-body {
+    margin-top: 20px;
+  }
+
+  .work-section {
+    gap: 48px;
+  }
+
+  .work-intro h2 {
+    margin-top: 22px;
+  }
+
+  .principles article {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .project-card {
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    padding: 38px 14px;
+    margin-inline: -14px;
+  }
+
+  .project-copy > p {
+    font-size: 14px;
+  }
+
+  .project-links {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .project-image,
+  .project-glyph {
+    min-height: 200px;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 28px 20px;
+  }
+}
+
+/* Coarse pointers get no hover-only affordances left half-applied. */
+@media (hover: none) {
+  .project-image-veil,
+  .project-image-cta {
+    display: none;
+  }
+}

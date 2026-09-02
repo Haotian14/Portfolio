@@ -1,0 +1,129 @@
+.work-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 9vw, 150px);
+  border-bottom: 0;
+}
+
+.work-intro {
+  position: sticky;
+  top: calc(var(--header-h) + 60px);
+  align-self: start;
+}
+
+.work-intro h2 {
+  margin-top: 30px;
+}
+
+.work-lede {
+  margin: 36px 0 0;
+  max-width: 52ch;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.principles article {
+  position: relative;
+  padding: 40px 0 46px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  column-gap: 22px;
+}
+
+.principle-number {
+  grid-row: 1 / span 2;
+  color: var(--muted);
+  font: 11px var(--font-mono);
+  letter-spacing: 0.08em;
+  transition: color var(--dur-mid) var(--ease-out-quint);
+}
+
+.principles article:hover .principle-number {
+  color: var(--accent);
+}
+
+.principles h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.principles p {
+  margin: 14px 0 0;
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.78;
+}
+
+/* A clay rule draws along the top border on hover. */
+.principle-rule {
+  position: absolute;
+  inset: -1px 0 auto 0;
+  height: 1px;
+  background: var(--accent-bright);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--dur-mid) var(--ease-out-expo);
+}
+
+.principles article:hover .principle-rule {
+  transform: scaleX(1);
+}
+
+.skills-panel {
+  grid-column: 1 / -1;
+  padding-top: 58px;
+  border-top: 1px solid var(--line);
+}
+
+.skills-title {
+  margin: 0 0 24px;
+  font: 11px var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.skill-list span {
+  padding: 11px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font: 12px var(--font-mono);
+  color: var(--ink-soft);
+  transition: transform var(--dur-mid) var(--ease-out-expo),
+    border-color var(--dur-fast) var(--ease-out-quint),
+    color var(--dur-fast) var(--ease-out-quint),
+    background var(--dur-fast) var(--ease-out-quint);
+  transition-delay: calc(var(--i, 0) * 26ms);
+}
+
+.skills-panel[data-revealed="true"] .skill-list span {
+  animation: chip-in 620ms var(--ease-out-expo) backwards;
+  animation-delay: calc(var(--i, 0) * 42ms);
+}
+
+.skill-list span:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent-bright) 9%, transparent);
+  transition-delay: 0ms;
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
