@@ -32,6 +32,7 @@ const projects: Project[] = [
     tags: ["React", "TypeScript", "Vite", "MDX"],
     href: "https://github.com/Haotian14/frontend-interview-notes",
     liveHref: "https://frontend-review-handbook.minato13.chatgpt.site/",
+    image: `${import.meta.env.BASE_URL}frontend-handbook-cover.webp`,
   },
   {
     number: "03",
@@ -41,6 +42,7 @@ const projects: Project[] = [
     tags: ["LLM", "Machine Learning", "Algorithms", "Static Web"],
     href: "https://github.com/Haotian14/Algorithm-Review-Handbook",
     liveHref: "https://haotian14.github.io/Algorithm-Review-Handbook/#/",
+    image: `${import.meta.env.BASE_URL}algorithm-handbook-cover.svg`,
   },
 ];
 
