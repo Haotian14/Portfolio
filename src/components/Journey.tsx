@@ -26,8 +26,24 @@ export function Journey() {
               <span className="timeline-rule" aria-hidden="true" />
               <p className="timeline-label">{milestone.label}</p>
               <h3>{milestone.title}</h3>
-              <p className="timeline-place">{milestone.place}</p>
+              <p className="timeline-place">
+                {milestone.place}
+                {milestone.period && (
+                  <span className="timeline-period">{milestone.period}</span>
+                )}
+              </p>
               <p className="timeline-body">{milestone.body}</p>
+
+              {milestone.focus && (
+                <dl className="focus-list">
+                  {milestone.focus.map((entry) => (
+                    <div key={entry.area}>
+                      <dt>{entry.area}</dt>
+                      <dd>{entry.detail}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
             </div>
           </li>
         ))}

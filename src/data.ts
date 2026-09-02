@@ -47,7 +47,10 @@ export type Milestone = {
   label: string;
   title: string;
   place: string;
+  period?: string;
   body: string;
+  /** Grouped subject areas — themes, not a course list. */
+  focus?: { area: string; detail: string }[];
 };
 
 export const milestones: Milestone[] = [
@@ -56,14 +59,50 @@ export const milestones: Milestone[] = [
     label: "University",
     title: "Bachelor of Computer Science",
     place: "UNSW Sydney",
-    body: "Built a rigorous foundation in software engineering, algorithms and artificial intelligence through hands-on systems and problem-solving projects.",
+    period: "2021 — 2024",
+    body: "Built a rigorous foundation in software engineering, algorithms and artificial intelligence, closing with a team capstone that took a real-world system from proposal to delivery.",
+    focus: [
+      {
+        area: "Foundations",
+        detail:
+          "C and computer systems, data structures, algorithm design and analysis, discrete mathematics",
+      },
+      {
+        area: "Building software",
+        detail:
+          "software engineering practice, object-oriented design, database systems and their internals, computer networks",
+      },
+      {
+        area: "AI and the web",
+        detail:
+          "artificial intelligence, neural networks and deep learning, computer vision, web front-end programming",
+      },
+    ],
   },
   {
     marker: "02",
     label: "Postgraduate",
     title: "Master of Information Technology",
     place: "UNSW Sydney",
-    body: "Deepened my technical range across security, data systems and modern software delivery while connecting academic ideas to product-oriented engineering.",
+    period: "2024 — 2025",
+    body: "Deepened my technical range across security, data systems and modern software delivery, again finishing on a team capstone — and kept connecting the academic ideas back to product-oriented engineering.",
+    focus: [
+      {
+        area: "Machine learning and data",
+        detail:
+          "machine learning and data mining, recommender systems, graph analytics, big data management, information retrieval and web search",
+      },
+      {
+        area: "Systems and security",
+        detail:
+          "concepts of programming languages, software construction tooling, security engineering and cyber security",
+      },
+      {
+        area: "People and reasoning",
+        detail:
+          "human–computer interaction, knowledge representation and reasoning, research methods",
+      },
+    ],
   },
   {
     marker: "03",

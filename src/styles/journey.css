@@ -109,3 +109,42 @@
   font-size: 15px;
   line-height: 1.78;
 }
+
+.timeline-period {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+/* Subject areas studied — grouped themes rather than a course list. */
+.focus-list {
+  grid-column: 1 / -1;
+  /* The grid's own 36px row gap already sits above this block. */
+  margin: 8px 0 0;
+  border-top: 1px solid var(--line-soft);
+}
+
+.focus-list > div {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.22fr) 1fr;
+  gap: 8px 28px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.focus-list dt {
+  font: 10px var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  padding-top: 2px;
+}
+
+.focus-list dd {
+  margin: 0;
+  max-width: 68ch;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.68;
+}

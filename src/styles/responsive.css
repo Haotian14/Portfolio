@@ -153,6 +153,15 @@
     margin-top: 20px;
   }
 
+  .focus-list {
+    margin-top: 24px;
+  }
+
+  .focus-list > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
   .work-grid {
     gap: 48px;
   }
