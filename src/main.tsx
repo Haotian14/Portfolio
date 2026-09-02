@@ -31,9 +31,19 @@ const projects: Project[] = [
       "A structured frontend knowledge system with 50 in-depth topics, full-text search, interview drills, code references and a dependency-based learning map. Every route is prerendered for speed and discoverability.",
     tags: ["React", "TypeScript", "Vite", "MDX"],
     href: "https://github.com/Haotian14/frontend-interview-notes",
+    liveHref: "https://frontend-review-handbook.minato13.chatgpt.site/",
   },
   {
     number: "03",
+    title: "Algorithm Interview Handbook",
+    description:
+      "A focused interview handbook for machine learning roles: 17 chapters, 201 high-frequency review questions and runnable implementations covering LLMs, recommender systems, computer vision, machine learning and system design.",
+    tags: ["LLM", "Machine Learning", "Algorithms", "Static Web"],
+    href: "https://github.com/Haotian14/Algorithm-Review-Handbook",
+    liveHref: "https://haotian14.github.io/Algorithm-Review-Handbook/#/",
+  },
+  {
+    number: "04",
     title: "IBKR Review Workspace",
     description:
       "A security-conscious, read-only investment review workspace built around the official IBKR MCP. It turns a written investment discipline into a repeatable daily portfolio review workflow.",
@@ -240,7 +250,7 @@ function App() {
                     </a>
                     {project.liveHref && (
                       <a href={project.liveHref} target="_blank" rel="noreferrer">
-                        Live project <ArrowIcon />
+                        Live website <ArrowIcon />
                       </a>
                     )}
                   </div>
