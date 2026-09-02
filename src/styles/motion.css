@@ -1,0 +1,218 @@
+/* ──────────────────────────────────────────────────────────────
+   Motion contract
+   ---------------
+   `[data-reveal]` elements are hidden until the IntersectionObserver
+   in `lib/motion.ts` stamps `data-revealed="true"`. Everything is
+   transform + opacity + filter only, so nothing triggers layout.
+
+   Without JavaScript (`html` has no `.js` class) the hidden state is
+   never applied, so the page still reads perfectly.
+   ────────────────────────────────────────────────────────────── */
+
+.js [data-reveal] {
+  transition: opacity var(--dur-slow) var(--ease-out-expo),
+    transform var(--dur-slow) var(--ease-out-expo),
+    filter var(--dur-slow) var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
+}
+
+.js [data-reveal="up"] {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0);
+  filter: blur(6px);
+}
+
+.js [data-reveal="fade"] {
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.js [data-reveal="scale"] {
+  opacity: 0;
+  transform: scale(0.965);
+  filter: blur(6px);
+}
+
+.js [data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  will-change: auto;
+}
+
+/* ── Masked line reveal, used by display headings ────────────── */
+
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.mask-line-inner {
+  display: block;
+  transform: translate3d(0, 105%, 0);
+  animation: line-rise 1150ms var(--ease-out-expo) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* Headings further down the page wait for their section to scroll in. */
+.js [data-reveal="mask-group"] .mask-line-inner {
+  animation-play-state: paused;
+}
+
+.js [data-reveal="mask-group"][data-revealed="true"] .mask-line-inner {
+  animation-play-state: running;
+}
+
+@keyframes line-rise {
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ── Hero load choreography ──────────────────────────────────── */
+
+.js [data-enter] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  animation: enter-rise 1000ms var(--ease-out-expo) forwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes enter-rise {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ── Ambient background ──────────────────────────────────────── */
+
+.atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  transition: opacity var(--dur-slow) var(--ease-out-quint);
+}
+
+.orb-clay {
+  top: -18vh;
+  right: -12vw;
+  width: 46vw;
+  height: 46vw;
+  min-width: 340px;
+  min-height: 340px;
+  background: radial-gradient(circle, rgba(204, 120, 92, 0.42), transparent 68%);
+  animation: drift-a 26s var(--ease-in-out-quart) infinite alternate;
+}
+
+.orb-olive {
+  bottom: -22vh;
+  left: -14vw;
+  width: 42vw;
+  height: 42vw;
+  min-width: 300px;
+  min-height: 300px;
+  background: radial-gradient(circle, rgba(124, 140, 90, 0.3), transparent 68%);
+  animation: drift-b 32s var(--ease-in-out-quart) infinite alternate;
+}
+
+[data-theme="dark"] .orb {
+  opacity: 0.42;
+}
+
+@keyframes drift-a {
+  to {
+    transform: translate3d(-7vw, 9vh, 0) scale(1.14);
+  }
+}
+
+@keyframes drift-b {
+  to {
+    transform: translate3d(6vw, -8vh, 0) scale(1.1);
+  }
+}
+
+/* Fine film grain keeps the large flat areas from banding. */
+.grain {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 6s steps(6) infinite;
+}
+
+[data-theme="dark"] .grain {
+  mix-blend-mode: screen;
+  opacity: 0.1;
+}
+
+@keyframes grain-shift {
+  0% { transform: translate3d(0, 0, 0); }
+  20% { transform: translate3d(-3%, 2%, 0); }
+  40% { transform: translate3d(2%, -3%, 0); }
+  60% { transform: translate3d(-2%, -2%, 0); }
+  80% { transform: translate3d(3%, 1%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Everything above the atmosphere sits on its own layer. */
+.site-header,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Theme crossfade via the View Transitions API ────────────── */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease-out-quint);
+  mix-blend-mode: normal;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Reduced motion: keep every layout and colour decision, drop all
+   movement. Revealed content is shown outright rather than animated.
+   ────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js [data-reveal],
+  .js [data-enter] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .mask-line-inner {
+    transform: none !important;
+  }
+}
