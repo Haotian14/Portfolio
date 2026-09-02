@@ -81,6 +81,37 @@ export function useScrollProgress() {
   }, []);
 }
 
+/**
+ * True once the page has scrolled past `threshold`. Drives the header's
+ * collapse from the full wordmark down to the initials.
+ */
+export function useScrolledPast(threshold = 32): boolean {
+  const [past, setPast] = useState(false);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      setPast(window.scrollY > threshold);
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [threshold]);
+
+  return past;
+}
+
 /** Returns the id of the section currently occupying the middle of the viewport. */
 export function useActiveSection(ids: string[]): string {
   const [active, setActive] = useState("");

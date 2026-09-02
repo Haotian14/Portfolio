@@ -1,15 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Haotian Luo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hart Luo">
   <rect width="64" height="64" rx="14" fill="#CC785C"/>
-  <g fill="#F7F4ED" transform="translate(-1.5 0)">
-    <!-- Serif H: stems, crossbar, and bracketed serifs top and bottom. -->
-    <rect x="17" y="16" width="6" height="28"/>
-    <rect x="31" y="16" width="6" height="28"/>
-    <rect x="23" y="27" width="8" height="6"/>
-    <rect x="13.5" y="16" width="13" height="3.4"/>
-    <rect x="27.5" y="16" width="13" height="3.4"/>
-    <rect x="13.5" y="40.6" width="13" height="3.4"/>
-    <rect x="27.5" y="40.6" width="13" height="3.4"/>
-    <!-- The accent dot that closes the "HL." monogram in the header. -->
-    <circle cx="49" cy="39.6" r="4.4"/>
+  <g fill="#F7F4ED">
+    <!--
+      H and L interlock on a shared stroke: the H's right stem is also the
+      L's spine, and the L's arm springs from its foot.
+
+      The H's own bottom-left serif is deliberately dropped. With it in
+      place, two horizontals sit on the baseline and the mark reads as an H
+      with a tail; without it, the arm is the only baseline stroke, so the
+      L resolves and the two letters read as one ligature.
+    -->
+    <rect x="12" y="17" width="6" height="30"/>
+    <rect x="28" y="17" width="6" height="30"/>
+    <rect x="18" y="28.5" width="10" height="6"/>
+    <rect x="9" y="17" width="12" height="3.4"/>
+    <rect x="25" y="17" width="12" height="3.4"/>
+    <rect x="28" y="43" width="20" height="4"/>
+    <circle cx="53" cy="43.5" r="3.5"/>
   </g>
 </svg>
