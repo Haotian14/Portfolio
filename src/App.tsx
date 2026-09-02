@@ -1,4 +1,5 @@
 import { Atmosphere } from "./components/Atmosphere";
+import { ChapterRail } from "./components/ChapterRail";
 import { Closing, SiteFooter } from "./components/Closing";
 import { Hero } from "./components/Hero";
 import { HowIWork } from "./components/HowIWork";
@@ -20,6 +21,7 @@ export default function App() {
       </a>
       <Atmosphere />
       <SiteHeader />
+      <ChapterRail />
 
       <main id="top">
         <Hero />

@@ -220,3 +220,27 @@
   font: 9px var(--font-mono);
   letter-spacing: 0.14em;
 }
+
+
+/* Editorial cover reveal: the colour field clears as each project enters view. */
+.project-image::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(1);
+  transform-origin: right center;
+  transition: transform 900ms var(--ease-out-expo);
+  transition-delay: calc(var(--reveal-delay, 0ms) + 160ms);
+  pointer-events: none;
+}
+
+.project-card[data-revealed="true"] .project-image::after {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.project-card:nth-child(2n) .project-image::after {
+  background: var(--olive);
+}
