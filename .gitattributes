@@ -1,0 +1,5 @@
+# Linguist picks the repo language by byte count. The stylesheets outweigh the
+# TypeScript they style (~40KB vs ~29KB), which labels this React app as a CSS
+# project. Keep the CSS out of the language stats so the label reflects the
+# stack; the files are still ordinary source and are diffed and reviewed normally.
+*.css linguist-detectable=false
