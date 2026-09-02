@@ -1,8 +1,11 @@
 .work-section {
+  border-bottom: 0;
+}
+
+.work-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(48px, 9vw, 150px);
-  border-bottom: 0;
 }
 
 .work-intro {
@@ -76,7 +79,7 @@
 }
 
 .skills-panel {
-  grid-column: 1 / -1;
+  margin-top: clamp(56px, 8vw, 130px);
   padding-top: 58px;
   border-top: 1px solid var(--line);
 }
