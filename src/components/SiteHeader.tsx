@@ -1,5 +1,5 @@
 import { navItems } from "../data";
-import { useActiveSection, useTheme } from "../lib/motion";
+import { useActiveSection, useScrolledPast, useTheme } from "../lib/motion";
 import { ArrowIcon } from "./primitives";
 
 function ThemeToggle() {
@@ -27,14 +27,29 @@ function ThemeToggle() {
 
 export function SiteHeader() {
   const active = useActiveSection(navItems.map((item) => item.id));
+  const collapsed = useScrolledPast(40);
 
   return (
-    <header className="site-header">
+    <header className="site-header" data-collapsed={collapsed ? "true" : undefined}>
       <div className="scroll-progress" aria-hidden="true" />
 
-      <a className="monogram" href="#top" aria-label="Back to top">
-        <span className="monogram-mark">HL</span>
-        <span className="monogram-dot" />
+      {/*
+        The wordmark folds to its initials on scroll: the inner letters
+        collapse to zero width, leaving "HL." behind. aria-label keeps the
+        accessible name stable no matter which state is showing.
+      */}
+      <a className="monogram" href="#top" aria-label="Hart Luo — back to top">
+        <span className="monogram-mark" aria-hidden="true">
+          <span className="mono-keep">H</span>
+          <span className="mono-fold">
+            <span>art</span>
+          </span>
+          <span className="mono-keep">L</span>
+          <span className="mono-fold">
+            <span>uo</span>
+          </span>
+        </span>
+        <span className="monogram-dot" aria-hidden="true" />
       </a>
 
       <nav aria-label="Primary navigation" className="site-nav">

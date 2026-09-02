@@ -31,15 +31,39 @@
   font-family: var(--font-display);
   font-size: 24px;
   font-weight: 500;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 
 .monogram-mark {
-  transition: letter-spacing var(--dur-mid) var(--ease-out-expo);
+  display: inline-flex;
+  align-items: baseline;
 }
 
-.monogram:hover .monogram-mark {
-  letter-spacing: 0.01em;
+.mono-keep {
+  display: inline-block;
+}
+
+/*
+  Each foldable run is an inline grid whose single track animates between
+  1fr and 0fr. Unlike a max-width transition this collapses to exactly the
+  text's own width, so there is no dead time at either end of the motion.
+*/
+.mono-fold {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  transition: grid-template-columns 620ms var(--ease-out-expo),
+    opacity 320ms var(--ease-out-quint);
+}
+
+.mono-fold > span {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.site-header[data-collapsed="true"] .mono-fold {
+  grid-template-columns: 0fr;
+  opacity: 0;
 }
 
 .monogram-dot {
@@ -52,6 +76,19 @@
 
 .monogram:hover .monogram-dot {
   transform: scale(1.5);
+}
+
+/* Browsers without fr interpolation still get a clean cut rather than a jam. */
+@supports not (grid-template-columns: 0fr) {
+  .mono-fold {
+    max-width: 4em;
+    overflow: hidden;
+    transition: max-width 620ms var(--ease-out-expo), opacity 320ms var(--ease-out-quint);
+  }
+
+  .site-header[data-collapsed="true"] .mono-fold {
+    max-width: 0;
+  }
 }
 
 .site-nav {
