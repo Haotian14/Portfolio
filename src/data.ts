@@ -156,4 +156,24 @@ export const navItems = [
   { id: "journey", label: "Journey" },
   { id: "work", label: "How I work" },
   { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
+
+export type Contact = {
+  label: string;
+  value: string;
+  href: string;
+};
+
+export const contacts: Contact[] = [
+  {
+    label: "Email",
+    value: "luohaotian0616@gmail.com",
+    href: "mailto:luohaotian0616@gmail.com",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/Haotian14",
+    href: "https://github.com/Haotian14",
+  },
 ];
