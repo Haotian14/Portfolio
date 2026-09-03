@@ -156,4 +156,30 @@ export const navItems = [
   { id: "journey", label: "Journey" },
   { id: "work", label: "How I work" },
   { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
+];
+
+export type Contact = {
+  label: string;
+  value: string;
+  href: string;
+};
+
+export const contacts: Contact[] = [
+  {
+    label: "Email",
+    value: "luohaotian0616@gmail.com",
+    href: "mailto:luohaotian0616@gmail.com",
+  },
+  {
+    // The shared URL carried utm_* share tracking; only the canonical path is kept.
+    label: "LinkedIn",
+    value: "linkedin.com/in/hart-luo-919866392",
+    href: "https://www.linkedin.com/in/hart-luo-919866392",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/Haotian14",
+    href: "https://github.com/Haotian14",
+  },
 ];
